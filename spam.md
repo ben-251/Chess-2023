@@ -1,0 +1,1 @@
+following the tdd principle, i'm not writing any code for a thing until i have a failing test for that thing. for example, i just made a thing to test that a certain exception is raised when the board size entered is a string. I'm now going to implement.
