@@ -9,7 +9,7 @@ class Display(bt.testCase):
 	def testFirstBoardRow(self):
 		board = Board()
 		row = output_manager.getNthRowDisplay(board, 1)
-		bt.assertEquals(row,f"|{colours.GREY}|") #TODO: finish this.
+		bt.assertEquals(row,f"{colours.CLEAR}|{colours.GREY}|{colours.CLEAR}") #TODO: finish this.
 
 class PieceMethods(bt.testCase):
 	...
