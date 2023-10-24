@@ -11,7 +11,4 @@ class Square:
 			return Colour.BLACK
 		else:
 			return Colour.WHITE
-
-	def __str__(self) -> str:
-		return f"{convertToLetter(self.position[0])}{self.position[1]}"
 	

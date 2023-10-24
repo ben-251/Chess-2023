@@ -3,6 +3,7 @@ from board import *
 from colours import Colour
 from output import OutputManager
 from square import Square
+from coordinates import *
 
 output_manager = OutputManager()
 
@@ -21,13 +22,15 @@ class BoardCreation(bt.testCase):
 		with bt.assertRaises(ValueError):
 			board = Board(size="a") # type: ignore Cuz it's wrong on purpose
 
-class Squares(bt.testCase):
-	def testSquareString(self):
-		bt.assertEquals(str(Square((1,1))),"a1") 
+class Coordinates(bt.testCase):
+	def testSquareAsCoordinate(self):
+		bt.assertEquals(tupleToCoordinate((1,1)),"a1") 
 
+	def testCoordinateAsSquare(self):
+		bt.assertEquals(coordinateToTuple("h4"),(8,4))
 bt.test_all(
 	Display, 
 	PieceMethods,
 	BoardCreation,
-	Squares
+	Coordinates
 )
