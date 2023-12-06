@@ -1,9 +1,9 @@
-from typing import Tuple
+from typing import List
 from colours import *
 from coordinates import convertToLetter
 
 class Square:
-	def __init__(self, position: Tuple[int, int]):
+	def __init__(self, position: List[int]):
 		self.position = position
 	
 	def getColour(self) -> Colour:
@@ -11,4 +11,10 @@ class Square:
 			return Colour.BLACK
 		else:
 			return Colour.WHITE
+	
+	def translate(self, step):
+		new_position = self.position
+		new_position[0] += step[0]
+		new_position[1] += step[1]
+		return Square(new_position) # Questionable
 	

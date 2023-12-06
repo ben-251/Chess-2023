@@ -26,3 +26,7 @@ i've decided a few things:
 
    square with piece property 
    or piece with position property?
+
+
+
+WAIT SHIFT+ENTER LETS YOU RUN THE CODE ON THAT LINE???

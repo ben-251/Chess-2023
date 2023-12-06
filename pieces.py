@@ -1,9 +1,7 @@
 from colorama import init
 from colours import Colour
 from square import Square
-
-class VacantSquare(Exception):
-	...
+from typing import List
 
 class Piece:
 	'''
@@ -12,21 +10,65 @@ class Piece:
 	def __init__(self, position: Square, colour: Colour):
 		self.position = position
 		self.colour = colour
+		self.backrank = self.getBackrank()
 		self.symbol = " "
 	
-	def isMoveValid(self, endPosition) -> bool:
-		# use the current position and see if it's possible to move to the new square
-		raise NotImplementedError
+	def getBackrank(self):
+		match self.colour:
+			case Colour.BLACK:
+				backrank = 0 # top to bottom, black is on "top"
+			case Colour.WHITE:
+				backrank = 7
+
+	def getPossibleSquares(self):
+		'''
+		Returns the squares on the board that the piece can theoretically move to.
+		Ignores blocking pieces, checks, etc.
+		'''
+		possible_squares:List[Square] = []
+		for step in self.getPossibleStepDeltas():
+			possible_squares.append(self.position.translate(step))
+
+	def getSquaresBetween(self,startPosition:Square, endPosition:Square):
+		...
+
+	def getPossibleStepDeltas(self):
+		'''
+		Gets the possible steps to move to each square. 
+		For example a pawn can either move (0,1) or (0,2).
+		a knight: (1,2), (1,-2), (-1,-2), (-1,2), (2,1), ...
+		'''
+		return []
 		
 
-class Pawn(Piece): ...
+class Pawn(Piece): 
+	symbol = "p"
+	def __init__(self,position, colour):
+		super().__init__(position, colour)
+		self.direction = self.getDirection()
 
-class Bishop(Piece): ...
+	def getDirection(self):
+		match self.colour:
+			case Colour.WHITE:
+				direction = -1 # read top to bottom, white is going backwards.
+			case Colour.BLACK:
+				direction = 1
+			case _:
+				raise ValueError("Invalid colour")
+		return direction
+			
 
-class Knight(Piece): ...
+class Bishop(Piece):
+	symbol = "b"
 
-class Rook(Piece): ...
+class Knight(Piece):
+	symbol = "n"
 
-class King(Piece): ...
+class Rook(Piece):
+	symbol = "r"
 
-class Queen(Piece): ...
+class King(Piece):
+	symbol = "k"
+
+class Queen(Piece):
+	symbol = "q"

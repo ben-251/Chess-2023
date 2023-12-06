@@ -1,6 +1,5 @@
 from board import Board
 from colours import Colour
-from pieces import VacantSquare
 
 class OutputManager:
 	def getNthRowDisplay(self, board: Board, n: int) -> str:
@@ -13,9 +12,10 @@ class OutputManager:
 				continue
 			output += CLEAR + "|"
 			output += square.getColour().value
-			try:
-				output += board.findPieceOnSquare(square).symbol
-			except VacantSquare:
+			piece_on_square = board.getPieceOnSquare(square)
+			if not piece_on_square is None:
+				output += piece_on_square.symbol # display uppercase if black
+			else:
 				output += " "
 			if i == board.size-1:
 				output += CLEAR + "|"

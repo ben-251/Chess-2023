@@ -1,4 +1,6 @@
 from typing import Tuple
+#TODO: make a-h -> 7-0; 1-8 -> 0-7
+# meaning a1 -> (7,0)
 
 def convertToLetter(number: int) -> str:
 	return chr(96+number)
@@ -11,3 +13,4 @@ def coordinateToTuple(coordinate: str) -> Tuple[int, int]:
 
 def tupleToCoordinate(tuple: Tuple[int,int]) -> str:
 	return f"{convertToLetter(tuple[0])}{tuple[1]}"
+
